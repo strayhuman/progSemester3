@@ -62,6 +62,10 @@ public:
     friend ofstream& writeToBinary(ofstream& ofs, const Magazine& m);
     friend ifstream& readFromBinary(ifstream& ifs, Magazine& m);
 
+     virtual void print();
+
+     bool has_name(const char* other_name) const;
+
 };
 
     

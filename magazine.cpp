@@ -6,23 +6,32 @@
 using namespace std;
 
 Magazine::Magazine(const char* name, int issues_per_year, int circulation) {
-    this -> name = new char[10];
-    strcpy(this -> name, name);
+    if (name != nullptr) {
+        this -> name = new char[strlen(name) + 1]; // выделяем точный размер
+        strcpy(this -> name, name);
+    } 
+    else {
+        this -> name = nullptr;
+    }
 
     this -> issues_per_year = issues_per_year;
     this -> circulation = circulation;
 }
 
 Magazine::Magazine(const Magazine& other) {
-    name = new char[strlen(other.name) + 1];
-    strcpy(this -> name, other.name);
+    if (other.name != nullptr) {
+        name = new char[strlen(other.name) + 1];
+        strcpy(this -> name, other.name);
+    } else {
+        name = nullptr;
+    }
     this -> issues_per_year = other.issues_per_year;
     this -> circulation = other.circulation;
 }
 
  Magazine::Magazine() {
     name = new char[10];
-    name[0] = '\0';
+    name = nullptr;
     issues_per_year = 0;
     circulation = 0;
  }
@@ -170,6 +179,15 @@ ifstream& readFromBinary(ifstream& ifs, Magazine& m) {
     }
 
     return ifs;
+}
+
+void Magazine::print() {
+
+    cout << "Название: " << name << ", Выпусков в год: " << issues_per_year << ", Тираж: " << circulation << endl;
+}
+
+bool Magazine::has_name(const char* other_name) const {
+    return name && other_name && strcmp(name, other_name) == 0;
 }
 
 
