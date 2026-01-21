@@ -5,6 +5,9 @@ ChildrenMagazine::ChildrenMagazine() {
 }
 
 ChildrenMagazine::ChildrenMagazine(const char* name, int issues_per_year, int circulation, int age) : Magazine(name, issues_per_year, circulation) {
+    if (age < 0) {
+        throw invalid_argument("Возрастное ограничение не может быть отрицательным");
+    }
     this -> age = age;
 }
 
@@ -21,6 +24,9 @@ int ChildrenMagazine::get_age() {
 }
 
 void ChildrenMagazine::set_age(int a) {
+    if (a < 0) {
+        throw invalid_argument("Возрастное ограничение не может быть отрицательным");
+    }
     age = a;
 }
 

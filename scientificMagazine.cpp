@@ -5,6 +5,9 @@ ScientificMagazine::ScientificMagazine() {
 }
 
 ScientificMagazine::ScientificMagazine(const char* name, int issues_per_year, int circulation, int impact_factor) : Magazine(name, issues_per_year, circulation) {
+    if (impact_factor < 0) {
+        throw invalid_argument("Импакт-фактор не может быть отрицательным");
+    }
     this -> impact_factor = impact_factor;
 }
 
@@ -13,7 +16,7 @@ ScientificMagazine::ScientificMagazine(const ScientificMagazine& other) {
 }
 
 ScientificMagazine::~ScientificMagazine() {
-    
+
 }
 
 int ScientificMagazine::get_impact_factor() {
@@ -21,6 +24,9 @@ int ScientificMagazine::get_impact_factor() {
 }
 
 void ScientificMagazine::set_impact_factor(int imp) {
+     if (imp < 0) {
+        throw invalid_argument("Импакт-фактор не может быть отрицательным");
+    }
     impact_factor = imp;
 }
 

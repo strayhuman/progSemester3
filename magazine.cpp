@@ -13,6 +13,9 @@ Magazine::Magazine(const char* name, int issues_per_year, int circulation) {
     else {
         this -> name = nullptr;
     }
+    if (issues_per_year < 0 || circulation < 0) {
+        throw invalid_argument("Количество выпусков и тираж не могут быть отрицательными");
+    }
 
     this -> issues_per_year = issues_per_year;
     this -> circulation = circulation;

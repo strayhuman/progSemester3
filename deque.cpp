@@ -6,7 +6,6 @@
 using namespace std;
 
 //создает пустой список
-//Deque::Deque() : head(nullptr), tail(nullptr) {}
  Deque::Deque() {
      head = nullptr;
      tail = nullptr;
@@ -34,6 +33,9 @@ void Deque::add_back(Magazine* m) {
  }
 
  void Deque::remove_first() {
+    if (!head) {
+        throw runtime_error("Дек пуст, удаление невозможно");
+    }
     if (!head) return;
 
     Node* temp = head;
@@ -50,6 +52,9 @@ void Deque::add_back(Magazine* m) {
  }
 
  void Deque::remove_last() {
+    if (!tail) {
+        throw runtime_error("Дек пуст, удаление невозможно");
+    }
     if (!tail) return;
 
     Node* temp = tail;
@@ -65,6 +70,12 @@ void Deque::add_back(Magazine* m) {
  }
 
 void Deque::insert(int index, Magazine* m) {
+    // if (index < 0) {
+    //     throw out_of_range("Индекс не может быть отрицательным");
+    // }
+    if (!head) {
+        throw runtime_error("Дек пуст");
+    }
     if (index <= 0) {
         Node* node = new Node;
         node -> data = m;
